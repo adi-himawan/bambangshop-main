@@ -48,15 +48,15 @@ You can install Postman via this website: https://www.postman.com/downloads/
     (You might want to use `cargo check` if you only need to verify your work without running the app.)
 
 ## Mandatory Checklists (Publisher)
--   [ ] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
+-   [V] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
 -   **STAGE 1: Implement models and repositories**
-    -   [ ] Commit: `Create Subscriber model struct.`
-    -   [ ] Commit: `Create Notification model struct.`
-    -   [ ] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
-    -   [ ] Commit: `Implement add function in Subscriber repository.`
-    -   [ ] Commit: `Implement list_all function in Subscriber repository.`
-    -   [ ] Commit: `Implement delete function in Subscriber repository.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+    -   [V] Commit: `Create Subscriber model struct.`
+    -   [V] Commit: `Create Notification model struct.`
+    -   [V] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
+    -   [V] Commit: `Implement add function in Subscriber repository.`
+    -   [V] Commit: `Implement list_all function in Subscriber repository.`
+    -   [V] Commit: `Implement delete function in Subscriber repository.`
+    -   [V] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
@@ -77,6 +77,16 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+#### 1. In the Observer pattern diagram explained by the Head First Design Pattern book, Subscriber is defined as an interface. Explain based on your understanding of Observer design patterns, do we still need an interface (or trait in Rust) in this BambangShop case, or a single Model struct is enough?
+Umumnya, penggunaan trait diperlukan jika kita memiliki beberapa jenis Observer yang mungkin memiliki behavior yang berbeda-beda. Dalam aplikasi BambangShop, kita hanya memiliki satu jenis Observer, yakni Subscriber. Oleh karena itu, dalam kasus ini, struktur single Model sudah sangat cukup untuk merepresentasikan Subscriber.
+
+#### 2. id in Product and url in Subscriber is intended to be unique. Explain based on your understanding, is using Vec (list) sufficient or using DashMap (map/dictionary) like we currently use is necessary for this case?
+Dalam kasus ini, penggunaan DashMap jauh lebih sesuai dibanding penggunaan Vec. DashMap memungkinkan penggunaan id yang unik sebagai key, yang dapat membantu mempercepat proses searching, insertion, dan deletion. Jika kita mengganti DashMap dengan Vec, kita akan perlu lebih dari satu Vec, yang bisa saja mempersulit proses pengolahan data.
+
+#### 3. When programming using Rust, we are enforced by rigorous compiler constraints to make a thread-safe program. In the case of the List of Subscribers (SUBSCRIBERS) static variable, we used the DashMap external library for thread safe HashMap. Explain based on your understanding of design patterns, do we still need DashMap or we can implement Singleton pattern instead?
+Dalam aplikasi berbasis multithreaded, pemilihan struktur data yang thread-safe sangat penting untuk menghindari race condition. Dalam kasus BambangShop, DashMap merupakan pilihan yang lebih tepat dibanding HashMap karena telah dirancang khusus sebagai 'HashMap' yang mampu me-handle concurrency. 
+
+Selanjutnya, secara definisi, penerapan Singleton pattern melalui lazy_static memastikan hanya ada satu instance untuk menyimpan daftar Subscriber. Hal ini dilakukan untuk memastikan setiap Subscriber diakses dari satu sumber yang sama. Oleh karena itu, sebagai kesimpulan, penggunaan DashMap yang dibarengi dengan penerapan Singleton pattern dapat menjadi salah satu solusi untuk diterapkan pada aplikasi berbasis multithreaded.
 
 #### Reflection Publisher-2
 
