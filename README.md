@@ -58,12 +58,12 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [V] Commit: `Implement delete function in Subscriber repository.`
     -   [V] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
-    -   [ ] Commit: `Implement subscribe function in Notification service.`
-    -   [ ] Commit: `Implement subscribe function in Notification controller.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification service.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [V] Commit: `Create Notification service struct skeleton.`
+    -   [V] Commit: `Implement subscribe function in Notification service.`
+    -   [V] Commit: `Implement subscribe function in Notification controller.`
+    -   [V] Commit: `Implement unsubscribe function in Notification service.`
+    -   [V] Commit: `Implement unsubscribe function in Notification controller.`
+    -   [V] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
     -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
@@ -89,5 +89,13 @@ Dalam aplikasi berbasis multithreaded, pemilihan struktur data yang thread-safe 
 Selanjutnya, secara definisi, penerapan Singleton pattern melalui lazy_static memastikan hanya ada satu instance untuk menyimpan daftar Subscriber. Hal ini dilakukan untuk memastikan setiap Subscriber diakses dari satu sumber yang sama. Oleh karena itu, sebagai kesimpulan, penggunaan DashMap yang dibarengi dengan penerapan Singleton pattern dapat menjadi salah satu solusi untuk diterapkan pada aplikasi berbasis multithreaded.
 
 #### Reflection Publisher-2
+#### 1. In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
+Dalam aplikasi BambangShop, Service berfungsi untuk mengelola logika bisnis dan Repository berfungsi untuk mengakses serta mengolah data di database. Berdasarkan Single Responsibility Principle (SRP), Model perlu dipisah menjadi Service dan Repository untuk membantu meningkatkan code maintainability secara keseluruhan.
+
+#### 2. What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
+Hanya menggunakan Model dan tidak membaginya menjadi Service dan Repository dapat membuat kode program kita menjadi tightly coupled. Akibatnya, perubahan pada salah satu model dapat berpengaruh terhadap model-model lainnya. Hal ini membuat kode kita menjadi lebih sulit untuk di-maintain.
+
+#### 3. Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
+Postman adalah alat pengujian API yang memungkinkan pengguna untuk melakukan berbagai jenis HTTP request. Menurut saya, hal ini sangat membantu proses pengembangan aplikasi karena memungkinkan developer untuk memeriksa apakah HTTP response yang diterima sudah sesuai dengan rancangan di awal. Tak hanya itu, Postman juga memungkinkan developer untuk memeriksa apakah data yang diterima setelah operasi CRUD sudah benar atau belum.  
 
 #### Reflection Publisher-3
